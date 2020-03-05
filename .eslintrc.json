@@ -1,11 +1,13 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier", "react-hooks"],
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
+  "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": ["error"],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx"] }
+    ]
   },
   "env": {
     "browser": true,
