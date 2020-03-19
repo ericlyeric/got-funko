@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -41,14 +42,6 @@ module.exports = merge(common, {
               sourceMap: true,
             },
           },
-        ],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
         ],
       },
     ],

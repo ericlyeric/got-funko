@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
@@ -23,10 +24,6 @@ module.exports = merge(common, {
       {
         test: /(\.css)$/,
         use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
