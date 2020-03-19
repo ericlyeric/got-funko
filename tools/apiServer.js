@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const jsonServer = require('json-server');
 
 const server = jsonServer.create();
