@@ -1,13 +1,20 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 
 const Navigation = () => {
   return (
-    <ul>
-      <li id="homepage">
-        <Link to="/">Home</Link>
-      </li>
-    </ul>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Button id="login-button" color="inherit">
+            Login
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 

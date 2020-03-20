@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import Navigation from './Navigation';
 
 describe('Navigation component', () => {
-  it('should have all navigation buttons', () => {
+  it('should have login button', () => {
     const wrapper = shallow(<Navigation />);
-    expect(wrapper.find('#homepage')).toHaveLength(1);
+    expect(wrapper.find('#login-button').text()).toBe('Login');
   });
 });
