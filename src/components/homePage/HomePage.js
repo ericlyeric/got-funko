@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -7,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles, ThemeProvider } from '@material-ui/core';
 import Logo from '../../../assets/got-funko-logo.png';
 import styles from '../common/styles';
+import '../common/Common.css';
 
 const styleCenter = {
   display: 'block',
@@ -60,12 +62,15 @@ const Home = () => {
           >
             <Grid item>
               <Button variant="contained" color="primary">
-                Sign-in
+                <Link to="/login">
+                  {' '}
+                  &nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;
+                </Link>
               </Button>
             </Grid>
             <Grid item>
               <Button variant="outlined" color="primary">
-                Sign-up
+                <Link to="/register">Register</Link>
               </Button>
             </Grid>
           </Grid>
