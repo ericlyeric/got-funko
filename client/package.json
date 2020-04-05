@@ -1,5 +1,5 @@
 {
-  "name": "got-funko",
+  "name": "got-funko-client",
   "version": "1.0.0",
   "description": "Web app from tracking Game of Throne Vinyl Funko Pops",
   "main": "index.js",

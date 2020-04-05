@@ -1,0 +1,21 @@
+{
+  "name": "got-funko-service",
+  "version": "1.0.0",
+  "description": "Web app from tracking Game of Throne Vinyl Funko Pops",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Ly",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config": "^0.3.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^2.0.3"
+  }
+}
