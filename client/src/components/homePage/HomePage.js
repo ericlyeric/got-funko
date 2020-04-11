@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -29,6 +30,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Home = () => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        'http://localhost:3001/characters/list',
+      );
+      setData(result.data.data);
+    };
+
+    fetchData();
+  }, []);
+
   const classes = useStyles();
 
   return (
@@ -53,6 +66,15 @@ const Home = () => {
             Simple application to keep track of the Game of Thrones
             Funko pops that you&apos;re collecting. Gotta collect em
             all!
+            {data === null
+              ? null
+              : data.map(element => {
+                  return (
+                    <li key={element.id}>
+                      {`${element.first_name} ${element.last_name}`}
+                    </li>
+                  );
+                })}
           </Typography>
           <Grid
             className={classes.heroButtons}
