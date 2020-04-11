@@ -6,9 +6,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: path.resolve(__dirname, './src/index'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
   },
   plugins: [
     new CleanWebpackPlugin(),
