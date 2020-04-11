@@ -1,11 +1,5 @@
-# common
 node_modules
 .vscode
 coverage
 
-# react
 dist
-
-# express
-.directory
-*~
