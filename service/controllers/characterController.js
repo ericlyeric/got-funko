@@ -10,7 +10,7 @@ exports.character_list = function (req, res, next) {
         return next(err);
       }
       res.send({
-        character_list: list_characters,
+        list_characters,
       });
       //   console.log(list_characters);
     });

@@ -34,9 +34,9 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        'http://localhost:3001/characters/list',
+        'http://localhost:3001/characters',
       );
-      setData(result.data.data);
+      setData(result.data.list_characters);
     };
 
     fetchData();
@@ -70,7 +70,8 @@ const Home = () => {
               ? null
               : data.map(element => {
                   return (
-                    <li key={element.id}>
+                    // eslint-disable-next-line no-underscore-dangle
+                    <li key={element._id}>
                       {`${element.first_name} ${element.last_name}`}
                     </li>
                   );
