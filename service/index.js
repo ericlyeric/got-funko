@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const createError = require('http-errors');
 const cors = require('cors');
 var cookieParser = require('cookie-parser');
@@ -8,6 +7,7 @@ const logger = require('morgan');
 const port = process.env.PORT || 3001;
 
 // routes go here
+var indexRouter = require('./routes/index');
 var charactersRouter = require('./routes/characters');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -20,18 +20,19 @@ const app = express();
 // maybe use helmet after to protect routes
 // app.use(helmet());
 
-// db connection goes here
-// use json for now before connection db
-// var mongoose = require('mongoose');
-// var dev_db_url =
-//   'mongodb+srv://admin:admin1@cluster0-xh9tr.azure.mongodb.net/local_library?retryWrites=true&w=majority';
-// var mongoDB = process.env.MONGODB_URI || dev_db_url;
-// mongoose.connect(mongoDB, { useNewUrlParser: true });
-// var db = mongoose.connection;
-// db.on(
-//   'error',
-//   console.error.bind(console, 'MongoDB connection error'),
-// );
+var mongoose = require('mongoose');
+var dev_db_url =
+  'mongodb+srv://admin:admin1@cluster0-xh9tr.azure.mongodb.net/got_funko?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+var db = mongoose.connection;
+db.on(
+  'error',
+  console.error.bind(console, 'MongoDB connection error'),
+);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -41,12 +42,13 @@ app.use(cors());
 // maybe add compression after
 
 // add routes here
+app.use('/', indexRouter);
 app.use('/characters', charactersRouter);
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 // app.use('/catalog', catalogRouter); // Add catalog routes to middleware chain.
 
-app.get('/', (req, res) => res.send('Hello World!'));
+// app.get('/', (req, res) => res.send('Hello World!'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

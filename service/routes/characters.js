@@ -1,19 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-let characters = require('../dummyDatabase');
+// require controller
+var character_controller = require('../controllers/characterController');
 
-router.get('/list', async (req, res) => {
-  try {
-    res.status(200).json({
-      data: characters,
-    });
-  } catch (error) {
-    res.status(400).json({
-      message: 'Some error occured',
-      err,
-    });
-  }
-});
+router.get('/', character_controller.character_list);
 
 module.exports = router;

@@ -4,15 +4,18 @@
   "description": "Web app from tracking Game of Throne Vinyl Funko Pops",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eric Ly",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "http-errors": "^1.7.3"
+    "http-errors": "^1.7.3",
+    "mongoose": "^5.9.7"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
