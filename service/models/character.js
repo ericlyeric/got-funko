@@ -2,8 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CharacterSchema = new Schema({
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true },
+  first_name: {
+    type: String,
+    required: true,
+  },
+  last_name: {
+    type: String,
+    required: true,
+  },
 });
 
 CharacterSchema.virtual('full_name').get(function () {
