@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const createError = require('http-errors');
 const cors = require('cors');
@@ -21,9 +22,8 @@ const app = express();
 // app.use(helmet());
 
 var mongoose = require('mongoose');
-var dev_db_url =
-  'mongodb+srv://admin:admin1@cluster0-xh9tr.azure.mongodb.net/got_funko?retryWrites=true&w=majority';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+var local_db = process.env.MONGODB_LOCAL;
+var mongoDB = process.env.MONGODB_CLOUD || local_db;
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

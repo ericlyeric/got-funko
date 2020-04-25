@@ -1,6 +1,7 @@
 console.log(
-  "This script populates some test  to your database. \
-  Usage in CLI: node populatedb 'mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true'",
+  'This script populates some test  to your database. \
+  Usage in CLI (cloud): node populatedb mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true\
+  Usage in CLI (local): node populatedb mongodb://localhost:27017/name_of_db',
 );
 
 var userArgs = process.argv.slice(2);
