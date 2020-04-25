@@ -51,7 +51,7 @@ app.use('/characters', charactersRouter);
 // app.get('/', (req, res) => res.send('Hello World!'));
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
@@ -60,10 +60,10 @@ app.get('/', function (req, res) {
   throw new Error('BROKEN'); // Express will catch this on its own.
 });
 
-app.listen(port, () =>
+app.listen(port, function () {
   console.log(
     `Server started, listening at http://localhost:${port}`,
-  ),
-);
+  );
+});
 
 module.exports = app;
