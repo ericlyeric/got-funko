@@ -1,69 +1,46 @@
-require('dotenv').config();
 const express = require('express');
-const createError = require('http-errors');
 const cors = require('cors');
 var cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
-const port = process.env.PORT || 3001;
-
-// routes go here
-var indexRouter = require('./routes/index');
-var charactersRouter = require('./routes/characters');
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-// var catalogRouter = require('./routes/catalog'); //Import routes for "catalog" area of site
-// var compression = require('compression');
-// var helmet = require('helmet');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const { connectToDb } = require('./config/connection');
 
 const app = express();
 
-// maybe use helmet after to protect routes
-// app.use(helmet());
+if (process.env.NODE_ENV === 'development') {
+  app.use(cors({
+    origin: process.env.CLIENT_URL
+  }))
+  app.use(morgan('dev'));
+}
 
-var mongoose = require('mongoose');
-var local_db = process.env.MONGODB_LOCAL;
-var mongoDB = process.env.MONGODB_CLOUD || local_db;
-mongoose.connect(mongoDB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-var db = mongoose.connection;
-db.on(
-  'error',
-  console.error.bind(console, 'MongoDB connection error'),
-);
-
-app.use(logger('dev'));
+const port = process.env.PORT || 3001;
+connectToDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
-// maybe add compression after
+app.use(helmet());
+
+// routes go here
+const authRouter = require('./routes/auth.route');
+const userRouter = require('./routes/user.route');
 
 // add routes here
-app.use('/', indexRouter);
-app.use('/characters', charactersRouter);
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-// app.use('/catalog', catalogRouter); // Add catalog routes to middleware chain.
+app.use('/api', authRouter);
+app.use('/api/user', userRouter);
 
 // app.get('/', (req, res) => res.send('Hello World!'));
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.get('/', function (req, res) {
-  throw new Error('BROKEN'); // Express will catch this on its own.
-});
+app.use((req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: "Page not found"
+  })
+})
 
 app.listen(port, function () {
   console.log(
     `Server started, listening at http://localhost:${port}`,
   );
 });
-
-module.exports = app;
