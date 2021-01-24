@@ -2,15 +2,6 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
 
-const CharacterSchema = new mongoose.Schema({
-  name: String,
-  number: Number,
-  title: String,
-  isWant: Boolean,
-  isHave: Boolean,
-  updatedAt: { type: Date, default: Date.now }
-});
-
 const UserSchema = new mongoose.Schema({
   username: { 
     type: String, 
@@ -20,7 +11,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  characters: [CharacterSchema]
+  wantCharacters: [Number],
+  haveCharacters: [Number],
 });
 
 UserSchema.plugin(uniqueValidator, { message: 'is already taken'});

@@ -1,4 +1,4 @@
-var User = require('../models/user.model');
+const User = require('../models/user.model');
 
 exports.get_user = function (req, res) {
   const { _id } = req.user;
