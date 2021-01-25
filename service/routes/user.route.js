@@ -9,9 +9,9 @@ router.get(
 );
 
 router.put(
-    '/:id',
+    '/',
     passport.authenticate('jwt', { session: false}),
-    user_controller.update_character
+    user_controller.update_characters
 )
 
 module.exports = router;

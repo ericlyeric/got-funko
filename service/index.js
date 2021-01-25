@@ -30,8 +30,6 @@ const userRouter = require('./routes/user.route');
 app.use('/api', authRouter);
 app.use('/api/user', userRouter);
 
-// app.get('/', (req, res) => res.send('Hello World!'));
-
 app.use((req, res, next) => {
   res.status(404).json({
     success: false,

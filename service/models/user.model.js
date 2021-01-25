@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
+const Character = require('./character.model');
 
 const UserSchema = new mongoose.Schema({
   username: { 
@@ -11,8 +12,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  wantCharacters: [Number],
-  haveCharacters: [Number],
+  characters: {
+    want: [Number],
+    have: [Number],
+    all: [{type: mongoose.Schema.Types.ObjectId, ref: Character}]
+  }
 });
 
 UserSchema.plugin(uniqueValidator, { message: 'is already taken'});

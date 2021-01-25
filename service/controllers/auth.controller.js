@@ -1,7 +1,20 @@
 const User = require('../models/user.model');
+const Character = require('../models/character.model');
 const { signToken } = require('../utils/auth');
 
-exports.auth_register = function (req, res) {
+exports.auth_register = async function (req, res) {
+    let allCharacters = await Character.find({}, (err, chara) => {
+        if (err) {
+            res.status(500).json({
+                message: {
+                    body: `Error ${err}`,
+                    error: true
+                }
+            })
+        } else {
+            return chara;
+        }
+    })
     const { username, password } = req.body;
     User.findOne({ username }, function (err, user) {
         if (err) {
@@ -20,7 +33,15 @@ exports.auth_register = function (req, res) {
                 }
             })
         } else {
-            const newUser = new User({ username, password });
+            const newUser = new User({ 
+                username, 
+                password,
+                characters: {
+                    have: [],
+                    want: [],
+                    all: allCharacters
+                } 
+            });
             newUser.save(function (err) {
                 if (err) {
                     res.status(500).json({
@@ -58,7 +79,11 @@ exports.auth_logout = function (req, res) {
         user: {
             id: '',
             name: '',
-            characters: [],
+            characters: {
+                want: [],
+                have: [],
+                all: []
+            },
             isAuthenticated: false
         },
         success: true
