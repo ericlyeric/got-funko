@@ -1,22 +1,10 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "airbnb",
-    "airbnb/hooks",
-    "prettier",
-    "plugin:jest/recommended"
-  ],
+  "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": ["error"],
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx"] }
-    ]
-  },
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest/globals": true
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

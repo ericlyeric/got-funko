@@ -1,25 +1,15 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Navigation from './common/Navigation';
-import HomePage from './homePage/HomePage';
-import PageNotFound from './PageNotFound';
-import Login from './loginPage/LoginPage';
-import RegisterPage from './registerPage/RegisterPage';
+import { Route, Switch } from 'react-router-dom';
+import Home from './home/Home';
+import PageNotFound from '../PageNotFound';
 
-const App = () => {
+function App() {
   return (
     <>
-      <Navigation />
+      <h1>t123</h1>
       <Switch>
         <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <RegisterPage />
+          <Home />
         </Route>
         <Route>
           <PageNotFound />
@@ -27,6 +17,6 @@ const App = () => {
       </Switch>
     </>
   );
-};
+}
 
 export default App;
