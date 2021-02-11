@@ -4,8 +4,8 @@
   "description": "Web app from tracking Game of Throne Vinyl Funko Pops",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Eric Ly",
   "license": "ISC",
