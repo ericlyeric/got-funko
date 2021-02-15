@@ -4,16 +4,18 @@ import HomePage from './home/HomePage';
 import LoginPage from './auth/LoginPage';
 import NavigationBar from './common/NavigationBar';
 import PageNotFound from '../PageNotFound';
-import PrivateRoute from '../hocs/PrivateRoute';
+// import PrivateRoute from '../hocs/PrivateRoute';
 
 function App() {
   return (
     <>
       <NavigationBar />
       <Switch>
-        <PrivateRoute exact path="/">
+        {/* <PrivateRoute exact path="/"> */}
+        <Route exact path="/">
           <HomePage />
-        </PrivateRoute>
+        </Route>
+        {/* </PrivateRoute> */}
         <Route path="/login">
           <LoginPage />
         </Route>
