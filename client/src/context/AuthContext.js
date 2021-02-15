@@ -39,8 +39,15 @@ const AuthProvider = ({ children }) => {
   return (
     <>
       {isLoading ? (
-        <Container>
-          <Spinner animation="border" />
+        <Container className="text-center pt-5">
+          <Spinner
+            animation="border"
+            size="lg"
+            style={{
+              width: '3.5rem',
+              height: '3.5rem',
+            }}
+          />
         </Container>
       ) : (
         <AuthContext.Provider value={providerValue}>
