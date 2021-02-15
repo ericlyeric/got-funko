@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
-import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useAuthContext } from '../../context/AuthContext';
+import CharacterCard from '../common/CharacterCard';
 import data from '../../api/data';
 
 const { user } = data;
@@ -17,20 +18,11 @@ const HomePage = () => (
 
   <>
     <Container>
-      <Row className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <Row className="row mt-3 row-cols-2 row-cols-md-4">
         {user.characters.all.length > 0
           ? user.characters.all.map((character) => (
               <Col>
-                <Card>
-                  <Card.Img
-                    className="text-center"
-                    src={character.link}
-                    style={{ width: '10rem', height: 'auto' }}
-                  />
-                  <Card.Body>
-                    <Card.Text>{character.name}</Card.Text>
-                  </Card.Body>
-                </Card>
+                <CharacterCard character={character} />
               </Col>
             ))
           : null}
