@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { BsHeart, BsHeartFill, BsBag, BsBagFill } from 'react-icons/bs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const CharacterCard = ({ character }) => (
   <Card>
@@ -23,12 +24,8 @@ const CharacterCard = ({ character }) => (
       style={{ width: '10rem', height: 'auto' }}
     />
     <Card.Body className="text-center p-2 mb-2">
-      <Button className="mr-1" size="lg" type="Button">
-        <BsHeart />
-      </Button>
-      <Button className="ml-1" size="lg" type="Button">
-        <BsBag />
-      </Button>
+      <FontAwesomeIcon icon={faHeart} size="2x" />
+      <FontAwesomeIcon icon={faCheck} size="2x" />
     </Card.Body>
   </Card>
 );
