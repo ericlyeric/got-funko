@@ -42,7 +42,7 @@ const LoginPage = () => {
   return (
     <Container className="align-items-center">
       <Form onSubmit={handleSubmit}>
-        <Row className="justify-content-md-center pt-5 pb-5">
+        <Row className="justify-content-center pt-5 pb-5">
           <Col xs={7}>
             <Form.Group>
               <h1 className="h3 mb-3 fw-normal">Please log in</h1>

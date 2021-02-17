@@ -3,8 +3,8 @@ const data = {
     id: '600e3eeb1b750d7a605d0940',
     name: 'admin',
     characters: {
-      want: [],
-      have: [],
+      want: [4],
+      have: [7],
       all: [
         {
           _id: '600cb6cc04f7b0365870997c',

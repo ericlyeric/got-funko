@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     setIsLoading(true);
     isAuthenticated().then((data) => {
-      setUser(data.user);
+      setUser(data);
       setIsAuth(data.isAuthenticated);
       setIsLoading(false);
     });

@@ -6,7 +6,18 @@ export const isAuthenticated = async () =>
     .then((res) => res.data)
     .catch(() => ({
       isAuthenticated: false,
-      username: undefined,
+      id: null,
+      name: undefined,
+      characters: {
+        want: [],
+        have: [],
+        all: [],
+      },
     }));
 
-export const filler = () => ({ filler: 'filler' });
+export const update = async (username, body) => {
+  axios
+    .put('/', { params: username, data: body })
+    .then((res) => res.data)
+    .catch(() => console.error('Could not update in database'));
+};

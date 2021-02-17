@@ -6,7 +6,13 @@ export const login = async (user) =>
     .then((res) => res.data)
     .catch(() => ({
       isAuthenticated: false,
-      username: undefined,
+      id: null,
+      name: undefined,
+      characters: {
+        want: [],
+        have: [],
+        all: [],
+      },
       message: {
         body: 'Invalid username or password',
         error: true,
