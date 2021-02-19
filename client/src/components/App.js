@@ -12,9 +12,7 @@ function App() {
       <NavigationBar />
       <Switch>
         <PrivateRoute exact path="/">
-          <Route exact path="/">
-            <HomePage />
-          </Route>
+          <HomePage />
         </PrivateRoute>
         <Route path="/login">
           <LoginPage />

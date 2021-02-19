@@ -29,8 +29,12 @@ const authRouter = require('./routes/auth.route');
 const userRouter = require('./routes/user.route');
 
 // add routes here
-app.use('/api', authRouter);
-app.use('/api/user', userRouter);
+// app.use('/api', authRouter);
+// app.use('/api/user', userRouter);
+app.use(`${process.env.BASE_API_URL}`, authRouter);
+app.use(`${process.env.BASE_API_URL}/user`, userRouter);
+
+console.log(process.env.SERVER_API_URL);
 
 app.use((req, res, next) => {
   res.status(404).json({

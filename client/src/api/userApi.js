@@ -15,9 +15,9 @@ export const isAuthenticated = async () =>
       },
     }));
 
-export const update = async (username, body) => {
+export const updateCharacter = async (body) => {
   axios
-    .put('/', { params: username, data: body })
+    .put('/user', { data: body })
     .then((res) => res.data)
     .catch(() => console.error('Could not update in database'));
 };

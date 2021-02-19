@@ -5,7 +5,7 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useAuthContext } from '../../context/AuthContext';
 import CharacterCard from '../common/CharacterCard';
 import data from '../../api/data';
-import { update } from '../../api/userApi';
+import { updateCharacter } from '../../api/userApi';
 
 // const { user } = data;
 
@@ -19,18 +19,22 @@ const HomePage = () => {
       setWant(user.characters.want);
       setHave(user.characters.have);
     }
-  }, []);
+  }, [user, want, have]);
 
-  const handleWant = async (char) => {
+  const handleWant = (char) => {
     let newWant = want;
     if (want.includes(char.id)) {
-      newWant = want.filter((elm) => elm.id !== char.id);
+      newWant = want.filter((elm) => elm !== char.id);
       setWant(newWant);
     } else {
       newWant = [...want, char.id];
       setWant(newWant);
     }
-    await update(user.name, { want: newWant });
+    updateCharacter({ username: user.name, want: newWant, have: [] }).then(
+      (newData) => {
+        console.log(newData);
+      },
+    );
   };
 
   if (isLoading) {
