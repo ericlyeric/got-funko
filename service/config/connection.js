@@ -8,14 +8,10 @@ exports.connectToDb = async function () {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
-        }, 
-        () => {
-            console.log('MongoDB connection successful');
-        }
-    );
-    const db = mongoose.connection;
-    db.on(
-        'error',
-        console.error.bind(console, 'MongoDB connection error')
-    );
+        }).then( () => {
+            console.log('Connected to database ')
+        })
+        .catch( (err) => {
+            console.error(`Error connecting to the database. \n${err}`);
+        })
 }
