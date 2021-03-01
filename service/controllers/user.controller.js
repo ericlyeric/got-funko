@@ -40,7 +40,7 @@ exports.update_characters = function (req, res) {
     user.characters.want = want;
     user
       .save()
-      .then(() => res.status(200).json('Updated characters list'))
+      .then(() => res.status(200).json(`successfully updated want:${want} and have:${have}`))
       .catch((err) =>
         res.status(400).json('Error could not update' + err),
       );

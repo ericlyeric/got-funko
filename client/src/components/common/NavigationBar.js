@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { logout } from '../../api/authApi';
 import { useAuthContext } from '../../context/AuthContext';
 
 const NavigationBar = () => {
   const history = useHistory();
-  const { user, setUser, isAuth, setIsAuth } = useAuthContext();
+  const { setUser, isAuth, setIsAuth } = useAuthContext();
 
   const handleLogout = () => {
     logout().then((data) => {

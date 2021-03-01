@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-const CharacterCard = ({ character, have, want, handleWant }) => (
+const CharacterCard = ({ character, have, want, onWant, onHave }) => (
   <Card className="mb-3">
     <Card.Header
       className="p-2"
@@ -21,14 +21,15 @@ const CharacterCard = ({ character, have, want, handleWant }) => (
     <Card.Img
       className="mx-auto d-block pt-2"
       src={character.link}
-      style={{ width: '10rem', height: 'auto' }}
+      style={{ height: '10rem', width: '100%', objectFit: 'contain' }}
     />
     <Card.Body className="text-center p-2 mb-2">
       <button
         className="mr-1"
+        name="want"
         type="button"
         style={{ background: 'white', border: 'none' }}
-        onClick={() => handleWant(character)}
+        onClick={() => onWant(character)}
       >
         <FontAwesomeIcon
           icon={faHeart}
@@ -39,8 +40,9 @@ const CharacterCard = ({ character, have, want, handleWant }) => (
       <button
         className="ml-1"
         type="button"
+        name="have"
         style={{ background: 'white', border: 'none' }}
-        onClick={() => console.log('test2')}
+        onClick={() => onHave(character)}
       >
         <FontAwesomeIcon
           icon={faCheck}
@@ -62,5 +64,6 @@ CharacterCard.propTypes = {
   }).isRequired,
   have: PropTypes.arrayOf(PropTypes.number).isRequired,
   want: PropTypes.arrayOf(PropTypes.number).isRequired,
-  handleWant: PropTypes.func.isRequired,
+  onWant: PropTypes.func.isRequired,
+  onHave: PropTypes.func.isRequired,
 };
