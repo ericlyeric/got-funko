@@ -5,6 +5,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import CharacterCard from '../common/CharacterCard';
 import { updateCharacter } from '../../api/userApi';
 import FilterBy from '../common/FilterBy';
+import SearchBy from '../common/SearchBy';
 import filters from '../common/constants';
 
 const HomePage = () => {
@@ -13,6 +14,7 @@ const HomePage = () => {
   const [have, setHave] = useState([]);
   const [filterBy, setFilterBy] = useState(filters[0]);
   const [filterCharacters, setFilterCharacters] = useState([]);
+  const [searchCharacter, setSearchCharacter] = useState([]);
 
   useEffect(() => {
     if (user.characters.want && user.characters.have) {
@@ -75,6 +77,14 @@ const HomePage = () => {
     }
   };
 
+  const handleSearchSelect = (e) => {
+    const test = user.characters.all.filter(
+      (character) => character.name === e[0],
+    );
+    setSearchCharacter(test);
+    setFilterCharacters([]);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -83,15 +93,23 @@ const HomePage = () => {
     <>
       <Container>
         <Row className="mt-3">
-          <Col>
+          <Col sm={4} md={4}>
             <FilterBy filterBy={filterBy} onSelect={handleFilterSelect} />
+          </Col>
+          <Col sm={12} md={8}>
+            <SearchBy
+              options={user.characters.all.map((character) => character.name)}
+              onChange={handleSearchSelect}
+            />
           </Col>
         </Row>
       </Container>
 
       <Container>
         <Row className="row mt-3 row-cols-2 row-cols-md-4">
-          {user.characters.all.length > 0 && filterBy === filters[0]
+          {user.characters.all.length > 0 &&
+          filterBy === filters[0] &&
+          searchCharacter.length < 1
             ? user.characters.all.map((character) => (
                 <Col key={character.id}>
                   <CharacterCard
@@ -103,7 +121,9 @@ const HomePage = () => {
                   />
                 </Col>
               ))
-            : filterCharacters.map((character) => (
+            : null}
+          {searchCharacter.length > 0
+            ? searchCharacter.map((character) => (
                 <Col key={character.id}>
                   <CharacterCard
                     character={character}
@@ -113,7 +133,21 @@ const HomePage = () => {
                     onHave={handleHave}
                   />
                 </Col>
-              ))}
+              ))
+            : null}
+          {filterCharacters.length > 0 && searchCharacter.length < 1
+            ? filterCharacters.map((character) => (
+                <Col key={character.id}>
+                  <CharacterCard
+                    character={character}
+                    have={have}
+                    want={want}
+                    onWant={handleWant}
+                    onHave={handleHave}
+                  />
+                </Col>
+              ))
+            : null}
         </Row>
       </Container>
     </>

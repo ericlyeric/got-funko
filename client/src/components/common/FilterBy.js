@@ -7,7 +7,7 @@ import filters from './constants';
 const FilterBy = ({ filterBy, onSelect }) => (
   <DropdownButton
     as={ButtonGroup}
-    menuAlign={{ lg: 'left' }}
+    menuAlign="left"
     title={`Filter By: ${filterBy}`}
   >
     {filters.map((filter) => (
