@@ -2,19 +2,19 @@
   "name": "got-funko-service",
   "version": "1.0.0",
   "description": "Web app from tracking Game of Throne Vinyl Funko Pops",
-  "main": "index.js",
+  "main": "./service/index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "build": "cd ../client && npm run build",
-    "install-client": "cd ../client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "dev": "nodemon index.js"
+    "service": "NODE_ENV=production node ./service/index.js",
+    "service-dev": "nodemon ./service/index.js",
+    "client": "cd client && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Eric Ly",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.0",
     "async": "^3.2.0",
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -29,11 +29,6 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config": "^0.3.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^11.1.0",
-    "morgan": "^1.10.0",
-    "prettier": "^2.0.3"
+    "morgan": "^1.10.0"
   }
 }
