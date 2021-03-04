@@ -4,6 +4,7 @@
   "description": "Web app from tracking Game of Throne Vinyl Funko Pops",
   "main": "./service/index.js",
   "scripts": {
+    "start": "nodemon ./service/index.js",
     "service": "NODE_ENV=production node ./service/index.js",
     "service-dev": "nodemon ./service/index.js",
     "client": "cd client && npm start",
