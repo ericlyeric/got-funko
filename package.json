@@ -9,7 +9,7 @@
     "service-dev": "nodemon ./service/index.js",
     "client": "cd client && npm start",
     "dev": "concurrently --raw \"npm run service-dev\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },
   "author": "Eric Ly",
   "license": "ISC",
@@ -24,7 +24,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
@@ -32,6 +31,7 @@
   "devDependencies": {
     "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
   }
 }
