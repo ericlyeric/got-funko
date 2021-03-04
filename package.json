@@ -7,12 +7,12 @@
     "service": "NODE_ENV=production node ./service/index.js",
     "service-dev": "nodemon ./service/index.js",
     "client": "cd client && npm start",
+    "dev": "concurrently --raw \"npm run service-dev\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Eric Ly",
   "license": "ISC",
   "dependencies": {
-    "@mapbox/node-pre-gyp": "^1.0.0",
     "async": "^3.2.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
@@ -28,6 +28,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
     "morgan": "^1.10.0"
   }
