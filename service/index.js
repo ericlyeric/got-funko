@@ -9,7 +9,6 @@ const { connectToDb } = require("./config/connection");
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
-  console.log(`We got in here somehow ... wtf ... ${process.env.NODE_ENV}`);
   app.use(
     cors({
       origin: process.env.CLIENT_URL,
@@ -20,7 +19,6 @@ if (process.env.NODE_ENV === "development") {
 
 const port = process.env.PORT || 3001;
 connectToDb();
-console.log(`We are currently in ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }

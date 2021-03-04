@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const login = async (user) =>
   axios
-    .post('/login', user)
+    .post("/api/login", user)
     .then((res) => res.data)
     .catch(() => ({
       isAuthenticated: false,
@@ -14,12 +14,13 @@ export const login = async (user) =>
         all: [],
       },
       message: {
-        body: 'Invalid username or password',
+        body: "Invalid username or password",
         error: true,
       },
     }));
 
 export const register = async (user) =>
-  axios.post('/register', user).then((res) => res.data);
+  axios.post("/api/register", user).then((res) => res.data);
 
-export const logout = async () => axios.get('/logout').then((res) => res.data);
+export const logout = async () =>
+  axios.get("/api/logout").then((res) => res.data);

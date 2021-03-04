@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const isAuthenticated = async () =>
   axios
-    .get('/user/is-authenticated')
+    .get("/api/user/is-authenticated")
     .then((res) => res.data)
     .catch(() => ({
       isAuthenticated: false,
@@ -17,6 +17,6 @@ export const isAuthenticated = async () =>
 
 export const updateCharacter = async (body) =>
   axios
-    .put('/user', { data: body })
+    .put("/api/user", { data: body })
     .then((res) => res.data)
-    .catch(() => console.error('Could not update in database'));
+    .catch(() => console.error("Could not update in database"));
