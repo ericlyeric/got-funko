@@ -2,6 +2,7 @@ import React from "react";
 import { DropdownButton, Dropdown, ButtonGroup } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import { faHeart, faCheck } from "@fortawesome/free-solid-svg-icons";
 import filters from "./constants";
 
 const FilterBy = ({ filterBy, onSelect }) => (
