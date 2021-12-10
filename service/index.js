@@ -37,13 +37,21 @@ app.use(`${process.env.BASE_API_URL}/user`, userRouter);
 
 console.log(process.env.PORT);
 
-express.Router().get("/", function (req, res, next) {
-  res.sendFile("index.html");
+app.use((req, res, next) => {
+  res.status(404);
+
+  if (req.accepts("html")) {
+    res.render("404", { url: req.url });
+    return;
+  }
 });
 
 if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build.index.html"));
+  app.use(express.static(path.resolve(__dirname, "../client", "build")));
+
+  app.get("*", (req, res, next) => {
+    // Serve index.html file if it doesn't recognize the route
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html")); // <- Here !
   });
 }
 
