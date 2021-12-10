@@ -37,15 +37,6 @@ app.use(`${process.env.BASE_API_URL}/user`, userRouter);
 
 console.log(process.env.PORT);
 
-app.use((req, res, next) => {
-  res.status(404);
-
-  if (req.accepts("html")) {
-    res.render("404", { url: req.url });
-    return;
-  }
-});
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../client", "build")));
 
