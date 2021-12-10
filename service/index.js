@@ -37,6 +37,10 @@ app.use(`${process.env.BASE_API_URL}/user`, userRouter);
 
 console.log(process.env.PORT);
 
+express.Router().get("/", function (req, res, next) {
+  res.sendFile("index.html");
+});
+
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build.index.html"));
