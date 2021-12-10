@@ -9,15 +9,12 @@ const { connectToDb } = require("./config/connection");
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
-  // app.use(
-  //   cors({
-  //     origin: process.env.CLIENT_URL,
-  //   })
-  // );
-  // app.use(morgan("dev"));
-  app.get("/*", function (req, res) {
-    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-  });
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL,
+    })
+  );
+  app.use(morgan("dev"));
 }
 
 const port = process.env.PORT || 3001;
@@ -40,18 +37,14 @@ app.use(`${process.env.BASE_API_URL}/user`, userRouter);
 
 console.log(process.env.PORT);
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve(__dirname, "../client", "build")));
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.resolve(__dirname, "../client", "build")));
-
-//   app.get("*", (req, res, next) => {
-//     // Serve index.html file if it doesn't recognize the route
-//     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html")); // <- Here !
-//   });
-// }
+  app.get("*", (req, res, next) => {
+    // Serve index.html file if it doesn't recognize the route
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html")); // <- Here !
+  });
+}
 
 app.listen(port, function () {
   console.log(`Server started, listening at http://localhost:${port}`);
